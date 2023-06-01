@@ -1,0 +1,307 @@
+<div id="main" class="container-fluid">
+
+    <header>
+        <div>
+          <div id="barre" class="container-fluid py-2">
+            <div class="d-flex flex-wrap justify-content-between justify-content-lg-start ">
+              
+              <a class=" align-items-center fs-1 fw-bold my-lg-0 text-white col-xl-6 col-9">
+                ToSucceed
+              </a>
+              <div class="pos-f-t col-xl-6 col-3 d-flex  justify-content-end">
+                
+              <nav class="nav  my-2 justify-content-between my-md-0 text-small align-items-center flex-row">
+                
+                <li *ngIf="isLoggedIn">
+                    <a routerLink="/accueil" href="#" class="nav-link  d-flex flex-column align-items-center">
+                        <i class="fa fa-home fa-2x"></i>
+                        Accueil
+                    </a>
+                </li>
+                <li *ngIf="isLoggedIn">
+                    <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                        <i class="fas fa-book fa-2x"></i>
+                        Cours
+                    </a>
+                </li>
+                <li *ngIf="isLoggedIn">
+                    <a routerLink="/message" class="nav-link d-flex flex-column justify-content-center align-items-center">
+                        <i class="fas fa-envelope fa-2x"></i>
+                        Messages ({{msgs}})
+                    </a>
+                </li>
+                <li *ngIf="isLoggedIn">
+                    <a routerLink="/user/management" href="#" class="nav-link  d-flex flex-column align-items-center">
+                        <i  class="fas fa-user-friends fa-2x"></i>
+                        Profil
+                    </a>
+                </li>
+                
+                <li class="ml-4">
+                    <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white">Login</a>
+                    <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+
+                </li>
+
+               
+               
+              </nav>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i style="color: white;" class="fas fa-bars"></i>                
+              </button>
+              
+              
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse" id="navbarToggleExternalContent">
+            <div class="d-flex justify-content-end">
+            <div id="navbartoggle" class="d-flex justify-content-center w-100 p-4">
+              <nav class="nav d-flex flex-row w-100 my-2 justify-content-start my-md-0 text-small align-items-center">
+                <li class="col-4" *ngIf="isLoggedIn">
+                    <a routerLink="/accueil" href="#" class="nav-link d-flex flex-column align-items-center">
+                        <i class="fa fa-home fa-2x"></i>
+                        Accueil
+                    </a>
+                </li>
+                <li class="col-4" *ngIf="isLoggedIn">
+                    <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                        <i class="fas fa-book fa-2x"></i>
+                        Cours
+                    </a>
+                </li>
+                <li class="col-4" *ngIf="isLoggedIn">
+                    <a routerLink="/message" class="nav-link text-center d-flex flex-column align-items-center">
+                        <i class="fas fa-envelope fa-2x"></i>
+                        Messages ({{msgs}})
+                    </a>
+                </li>
+                <li class="col-4" *ngIf="isLoggedIn">
+                    <a routerLink="/user/management" href="#" class="nav-link d-flex flex-column align-items-center">
+                        <i  class="fas fa-user-friends fa-2x"></i>
+                         Profil
+                    </a>
+                </li>
+                
+                <li class="col-8">
+                    <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white ">Login</a>
+                    <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+
+                </li>
+                
+               
+              </nav>
+            </div>
+            </div>
+          </div>
+        </div>
+        
+      </header> 
+    <div id="accueil" class="d-flex container justify-content-center">
+      <div id="messageaccueil" class="d-flex justify-content-start flex-column col-12 col-xl-7 ">
+          <div class="h1 d-flex flex-column ">
+              <h1>Apprends en t'amusant </h1>
+              <h2>Le site éducatif pour petits et grands</h2>
+              <h2>du CP à la 3ème</h2>
+          </div>
+          <div id="buttons" class="d-flex flex-row mt-3 mb-5">
+            <button [disabled]="!isLoggedIn || isAdmin" id="modalButton" class="btn btn-info btn-lg mr-3 text-white" data-toggle="modal"
+            data-target="#contactModal">CONTACT</button>
+            <button class="btn btn-success btn-lg mx-3" routerLink="/cours">LES COURS</button>
+          </div>   
+      </div>
+      <div class="d-flex align-items-center justify-content-center col-xl-5"> 
+        <img class="img-fluid" style="width: 90%; height: 90%;" src="assets/images/logo_transparent.png" alt="">
+      </div>
+    </div>
+    </div>
+    <div id="cartes" class="container-fluid">
+        <div id="carddetails" class="container py-5 d-flex justify-content-between">
+          <div class="col-xl-3">
+              <div class="card ">
+                  <div class="card-body d-flex justify-content-center flex-column">
+
+                      <h2 class="card-title mx-auto"><u>Pour Vous</u>  </h2>
+                      
+                    <ul>
+                      <li class="text-align">
+                          Des cours d'anglais, de maths et de français du CP à la 3ème
+                      </li>
+                      <li>
+                          Un suivi régulier
+                      </li>
+                      <li>
+                          Des professeurs titulaires avec + de 10 ans d'expérience
+                      </li>
+                    </ul>
+                      <br>
+                      <div class="d-flex justify-content-center ">
+                        <img style="width: 180px;height: 125px;" src="assets\images\anglais.jpg" alt="">
+
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+
+          <div class="col-xl-3">
+              <div class="card">
+                <div class="card-body d-flex justify-content-center flex-column">
+
+                      <h2 class="card-title mx-auto"> <u>Nos Forces</u> </h2>
+                      
+                    <ul>
+                      <li>
+                          Une pédagogie unique
+                      </li>
+                      <li>
+                          Cours accessibles 24h/24 et 7j/7
+                      </li>
+                      <li>
+                          Parfait pour l'école à la maison,
+                          surtout pendant le confinement
+                      </li>
+                    </ul>
+                    
+                      <br>
+                      <div class="d-flex justify-content-center my-2">
+                        <img style="width: 130px;height: 110px;" src="assets\images\force.jpg" alt="">
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-xl-3">
+              <div class="card" >
+                  <div class="card-body d-flex justify-content-center flex-column">
+
+                      <h2 class="card-title mx-auto"> <u>Mais encore...</u> </h2>
+                      <ul>
+                      <li>
+                          Une série spéciale :
+                            "Histoire pour les enfants"
+                      </li>
+                      <li>
+                          Une pédagogie applicable par les professeurs en classe
+                      </li>
+                      <li>
+                        Un vrai plus pour la scolarité
+                    </li>
+                  </ul>
+                    <br>
+
+                    <div class="d-flex justify-content-center my-2">
+                        <img style="width: 140px; height: 110px;" src="assets\images\bonus.PNG" alt="">
+
+                      </div>
+              </div>
+          </div>
+
+        </div>  
+  </div>
+
+        <div id="messagedujour" class="py-5 d-flex flex-column align-items-center mx-auto border-2 w-50 border-top border-bottom border-light">
+            <h1 class="text-center">"{{messagedujour?.contenu_msg}}"</h1> <br>
+            <h4 class="font-italic mb-3">{{messagedujour?.user.firstName}} {{messagedujour?.user.lastName}}</h4>
+            <button *ngIf="isAdmin" type="button" class="btn btn-info" data-toggle="modal"
+              data-target="#addMessageModal">
+              <i class="fa fa-plus"></i> Nouveau message
+            </button>
+        </div>  
+    </div>
+    
+    <div id="abonnement" class="d-flex justify-content-around p-5">
+        <div id="aboinfos" class="container d-flex row rounded mb-5 justify-content-between ">
+          <div id="aboo" class="d-flex flex-column p-xl-5 py-4 col-xl-9 col-12 ">
+            <h1 class="mb-5 text-decoration-underline">
+                Vous voulez avoir accès à tous les cours en illimité ! 
+
+            </h1>
+            <h5 class="mb-5">
+                Découvrez plusieurs formules d'abonnement adaptées à toutes et à tous
+
+            </h5>
+
+            <h4 *ngIf="user.abonnement!=null" class="text-decoration-underline">Vous êtes déjà abonné !</h4>
+            <button routerLink="/abonnement" class="btn btn-info text-white">
+              S'ABONNER
+            </button>
+
+        </div>
+        <div id="aboo" class="col-xl-3 d-flex align-items-center justify-content-center col-12">
+            <img style="height: 80%;width: 100%;" src="\assets\images\discount-email.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div [hidden]="!isAdmin" class="modal draggable fade bd-example-modal-lg" id="addMessageModal" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Nouveau Message</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #newMessageForm="ngForm" (ngSubmit)="onAddNewMessage(newMessageForm)">
+                  <div class="form-group">
+                    <label for="contenu_msg">Entrez votre message</label>
+                    <input type="text" name="contenu_msg" required ngModel class="form-control">
+                  </div>
+                  <button type="submit" style="display: none;" id="new-messagedujour-save"></button>
+            </form>
+            </div>
+                  
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new-messagedujour-close">Fermer</button>
+
+              <button type="button" (click)="saveNewMessage()" [disabled]="newMessageForm.invalid"
+                class="btn btn-primary">Sauvegarder le message</button>
+            </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="modal draggable fade bd-example-modal-lg" id="contactModal" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Nous contacter</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #contactForm="ngForm" (ngSubmit)="onContact(contactForm)">
+                  <div class="form-group">
+                    <label for="contenu_msg">Nous vous écoutons</label>
+                    <input type="text" name="contenu_msg" required ngModel class="form-control">
+                  </div>
+                  <button type="submit" style="display: none;" id="new-contact-save"></button>
+            </form>
+            </div>
+                  
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new-contact-close">Fermer</button>
+
+              <button type="button" (click)="saveNewContact()" [disabled]="contactForm.invalid"
+                class="btn btn-primary">Envoyer le message</button>
+            </div>
+      </div>
+    </div>
+    </div>
+
+    
+    
+    
+    
+
+    
+    
+
+

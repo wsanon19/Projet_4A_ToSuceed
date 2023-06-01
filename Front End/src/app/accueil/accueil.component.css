@@ -1,0 +1,116 @@
+
+
+#messageaccueil{
+    font-family: 'Roboto Slab', serif;
+    margin-top: 120px;
+    margin-bottom: 120px;
+    color: whitesmoke;
+}
+#buttons{
+    font-family: 'Lato', sans-serif;
+}
+
+#cartes{
+    background: linear-gradient(#0ea2f6,#303041 80%);
+}
+
+#abonnement{
+    background: #303041 ;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    padding-bottom: 60px;
+
+}
+
+.navbar-toggler{
+    display: none;
+
+}
+
+
+#aboinfos{
+    background: #3d3a50;
+}
+
+#messagedujour{
+    font-family: 'Oleo Script', cursive;
+    color: white;
+}
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-family: 'Roboto Slab', serif;
+    border-radius: 10px;
+
+
+}
+
+.nav-link,.nav-link:focus{
+    color: whitesmoke;
+}
+.nav-link:hover{
+    color:rgb(28, 6, 155);
+}
+.nav-link:focus{
+    color:royalblue;
+}
+
+.card li{
+    margin-top: 15px;
+}
+
+@media screen and (max-width:767px) {
+
+nav{
+        display: none;
+}
+nav a{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+    
+.navbar-toggler{
+    display: block;
+
+}
+#barre{
+    background-color: #161c2d;
+}
+#navbartoggle{
+    background-color: #161c2d;
+
+}
+
+    #accueil{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #messageaccueil{
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    #carddetails{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .card{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .dflex{
+        width: 100%;
+    }
+
+    #aboo{
+        width: 100%;
+    }
+    
+}
+

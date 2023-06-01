@@ -1,0 +1,324 @@
+<div id="main" class="container-fluid">
+  <header>
+    <div>
+      <div id="barre" class="container-fluid py-2">
+        <div class="d-flex flex-wrap justify-content-between justify-content-lg-start ">
+          
+          <a routerLink="/accueil" class=" align-items-center fs-1 fw-bold my-lg-0 text-white col-xl-6 col-9 text-decoration-none">
+            ToSucceed
+          </a>
+          <div class="pos-f-t col-xl-6 col-3 d-flex  justify-content-end">
+            
+          <nav class="nav  my-2 justify-content-between my-md-0 text-small align-items-center flex-row">
+            
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/accueil" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i class="fa fa-home fa-2x"></i>
+                    Accueil
+                </a>
+            </li>
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i class="fas fa-book fa-2x"></i>
+                    Cours
+                </a>
+            </li>
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/message" class="nav-link d-flex flex-column justify-content-center align-items-center">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    Messages 
+                </a>
+            </li>
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/user/management" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i  class="fas fa-user-friends fa-2x"></i>
+                    Profil
+                </a>
+            </li>
+            
+            <li class="ml-4">
+                <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white">Login</a>
+                <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+
+            </li>
+
+           
+           
+          </nav>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i style="color: white;" class="fas fa-bars"></i>                
+          </button>
+          
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="d-flex justify-content-end">
+        <div id="navbartoggle" class="d-flex justify-content-center w-100 p-4">
+          <nav class="nav d-flex flex-row w-100 my-2 justify-content-start my-md-0 text-small align-items-center">
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/accueil" href="#" class="nav-link d-flex flex-column align-items-center">
+                    <i class="fa fa-home fa-2x"></i>
+                    Accueil
+                </a>
+            </li>
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i class="fas fa-book fa-2x"></i>
+                    Cours
+                </a>
+            </li>
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/message" class="nav-link text-center d-flex flex-column align-items-center">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    Messages 
+                </a>
+            </li>
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/user/management" href="#" class="nav-link d-flex flex-column align-items-center">
+                    <i  class="fas fa-user-friends fa-2x"></i>
+                     Profil
+                </a>
+            </li>
+            
+            <li class="col-8">
+                <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white ">Login</a>
+                <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+
+            </li>
+            
+           
+          </nav>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+  </header> 
+      <div class="container-fluid d-flex flex-column bg-light p-4">
+          <div class="d-flex flex-row justify-content-between">
+          <div >
+            <h3 class="text-decoration-underline ">Découvrez tous les cours disponibles !</h3>
+
+            <h5 class="font-italic">{{filteredCours?.length}} cours trouvé(s)</h5>
+          </div>
+          <div *ngIf="isLoggedIn" [hidden]="!isAdminOrManager">
+            <button  type="button" class="btn btn-info mx-3" data-toggle="modal"
+            data-target="#addCoursModal">
+            <i class="fa fa-plus"></i> Nouveau cours
+            </button>
+          </div>
+          
+        </div>
+            <div class="d-flex row justify-content-lg-start justify-content-center my-3">
+              <div class="container rounded-0 mr-lg-5 h-100 col-12 col-lg-2 p-3 ml-0 mb-5">
+                <p class="font-weight-light text-decoration-underline">Sélectionnez le niveau souhaité</p>
+                    <div class="ml-3 row d-flex ">
+                        <div class="custom-control custom-checkbox col-5">
+                            <input type="checkbox" [(ngModel)]="filter.CP" (ngModelChange)="filterChange()" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">CP</label>
+                        </div>
+                        <div class="custom-control custom-checkbox col-5">
+                            <input type="checkbox" [(ngModel)]="filter.CE1" (ngModelChange)="filterChange()" class="custom-control-input" id="customCheck2">
+                            <label class="custom-control-label" for="customCheck2">CE1</label>
+                        </div>
+                        <div class="custom-control custom-checkbox col-5">
+                            <input type="checkbox" [(ngModel)]="filter.CE2" (ngModelChange)="filterChange()" class="custom-control-input" id="customCheck3">
+                            <label class="custom-control-label" for="customCheck3">CE2</label>
+                        </div>                  
+                        
+                    </div>
+
+                  
+              
+                <p class="font-weight-light text-decoration-underline mt-5">Sélectionnez la matière étudiée</p>
+                    <div class="flex-column d-flex">
+                        <div class="custom-control custom-checkbox col-5">
+                            <input type="checkbox" [(ngModel)]="filter.MATHS" (ngModelChange)="filterChange()" class="custom-control-input" id="customCheck11">
+                            <label class="custom-control-label" for="customCheck11">MATHS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox col-5">
+                            <input type="checkbox" [(ngModel)]="filter.FRANCAIS" (ngModelChange)="filterChange()" class="custom-control-input" id="customCheck12">
+                            <label class="custom-control-label" for="customCheck12">FRANCAIS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox col-5">
+                          <input type="checkbox" [(ngModel)]="filter.ANGLAIS" (ngModelChange)="filterChange()" class="custom-control-input" id="customCheck13">
+                          <label class="custom-control-label" for="customCheck13">ANGLAIS</label>
+                      </div>
+                        
+                                    
+                        
+                    </div>
+
+                  
+              </div>
+              <div class="col-12 col-lg-9 row d-flex px-0 d-lg-flex ml-lg-5">
+                  <tbody class=" mb-5 d-flex justify-content-center" *ngFor="let cours of filteredCours;let indexOfelement=index;">
+                      <div class="container d-flex row py-3 pr-lg-0">
+                        <div class="d-flex col-12 col-lg-3 align-items-center mb-lg-0 mb-5">
+                            <img style="width: 200px; height: 200px;" src="{{cours?.coursImageUrl}}" alt="" class="mx-auto">
+                        </div>
+                        <div class="pl-4 d-flex align-items-start flex-column col-lg-3 mb-lg-0 mb-5">
+                        <h2 class="text-uppercase text-decoration-underline">{{cours?.nom}}</h2><br>
+                        Niveau : {{cours?.niveau}} <br>
+                        Matiere : {{cours?.matiere}} <br>
+                        Professeur : {{cours?.user.firstName}} {{cours?.user.lastName}} 
+                      </div>
+                      
+                      <div class="col-10 pl-lg-4 pb-lg-0 d-flex flex-column justify-content-between col-lg-5 border-left border-aqua mb-lg-0 border-right">
+                        <div>
+                          <h3>Description du cours :</h3>
+                          <h5>{{cours?.description}}</h5>
+                        </div>
+                        <div class="row">
+                        <div class="col-lg-6">
+                        <div>
+                        <h5>Note : {{calHandle(indexOfelement) }} <i class="fas fa-star"></i> </h5>
+                      
+                        <button class="btn-info btn-sm mt-3 mt-lg-0 mb-3 mb-lg-0" type="button" (click)="onSelectUser(cours)">
+                          Rédiger un avis
+                        </button>
+                        </div>
+                        <button [hidden]="true" type="button" id="addAvis" data-toggle="modal" data-target="#addAvisModal">
+                        </button>
+                      </div>
+                      <div *ngIf="user.abonnement!=null" class="col-lg-5 d-flex align-content-end">
+                        <button class="btn-info btn-sm" type="button">
+                          <i class="fas fa-eye"></i> Voir le cours 
+                        </button>
+
+                      </div>
+                      </div>
+                    </div>
+
+                      <div class="px-2 col-lg-1 d-flex justify-content-end justify-content-lg-center col-2 align-items-end align-items-lg-start">
+                        <button [hidden]="!isAdmin" class="btn btn-outline-danger float-right h-25"
+                        (click)="onDeleteCours(cours.id)"><i class="fas fa-trash"></i></button>
+                      </div>
+                    </div>
+                  </tbody>
+              </div>
+          </div>
+
+
+      </div>
+
+
+      <!-- Ajouter un cours -->
+
+      <div [hidden]="!isAdmin" class="modal draggable fade bd-example-modal-lg" id="addCoursModal" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Nouveau Cours</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <form #newCoursForm="ngForm" (ngSubmit)="onAddNewCours(newCoursForm)">
+                  <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" required ngModel class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="authority">NIVEAU</label>
+                      <select name="niveau" required ngModel="CP" class="form-control">
+                        <option value="CP">CP</option>
+                        <option value="CE1">CE1</option> 
+                        <option value="CE2">CE2</option> 
+
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" required ngModel class="form-control">
+                  </div>
+                  <div class="form-group">
+                  <label for="authority">MATIERE</label>
+                    <select name="matiere" required ngModel="MATHS" class="form-control">
+                      <option value="MATHS">MATHS</option>
+                      <option value="FRANCAIS">FRANCAIS</option> 
+                      <option value="ANGLAIS">ANGLAIS</option> 
+
+                    </select>
+                </div>
+                  <div class="custom-file">
+                    <input type="file" accept="image/*" name="profileImage"
+                      (change)="onProfileImageChange($event.target.files[0].name, $event.target.files[0])"
+                      class="custom-file-input">
+                    <label class="custom-file-label"><span [hidden]="!fileName">{{ fileName }}</span>
+                      <span [hidden]="fileName">Choose File</span>
+                    </label>
+                  </div>
+                  
+                  <button type="submit" style="display: none;" id="new-cours-save"></button>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new-cours-close">Close</button>
+
+              <button type="button" (click)="saveNewCours()" [disabled]="newCoursForm.invalid"
+                class="btn btn-primary">Sauvegarder le cours</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ajouter un avis -->
+
+      <div class="modal draggable fade bd-example-modal-lg" id="addAvisModal" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Entrez un avis</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <form #newAvisForm="ngForm" (ngSubmit)="onAddNewAvis(newAvisForm)">
+                  
+                  <div class="form-group">
+                    <label for="contenu_com">Dites-nous tout</label>
+                    <input type="text" name="contenu_com" required ngModel class="form-control">
+                  </div>
+                  <div class="form-group">
+                    Note
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <ul class="list-inline rating-list" 
+                           *ngFor="let star of stars" style="display: inline-block" >
+                                <li (click)="countStar(star)"
+                                    [ngClass]="{'selected': (star <= selectedValue)}">
+                                  <i class="fa fa-star"></i>
+                                </li> 
+                          </ul>
+                          <br>                          
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <button type="submit" style="display: none;" id="new-avis-save"></button>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new-avis-close">Close</button>
+
+              <button type="button" (click)="saveNewAvis()" [disabled]="newAvisForm.invalid"
+                class="btn btn-primary">Sauvegarder l'avis</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+

@@ -1,0 +1,148 @@
+#main{
+
+    padding: 0%;
+    min-height: 160vh;
+}
+
+#messageaccueil{
+    font-family: 'Roboto Slab', serif;
+    margin-top: 120px;
+}
+#buttons{
+    font-family: 'Lato', sans-serif;
+}
+
+
+.container{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-family: 'Roboto Slab', serif;
+    border-radius: 10px;
+
+
+}
+
+.nav-pills{
+    display: flex;
+}
+
+.nav-link,.nav-link:focus{
+    color: whitesmoke;
+}
+.nav-link:hover{
+    color:rgb(28, 6, 155);
+}
+.nav-link:focus{
+    color:royalblue;
+}
+
+.card li{
+    margin-top: 15px;
+}
+
+.navbar-toggler{
+    display: none;
+
+}
+@media screen and (max-width:767px) {
+
+    #nav_notresponsive{
+            display: none;
+    }
+        
+    .navbar-toggler{
+        display: block;
+    
+    }
+    #barre{
+        background-color: #161c2d;
+    }
+    #navbartoggle{
+        background-color: #161c2d;
+    
+    }
+    
+        #accueil{
+            display: flex;
+            flex-direction: column;
+        }
+    
+        #messageaccueil{
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+    
+        #carddetails{
+            display: flex;
+            flex-direction: column;
+            
+        }
+    
+        .card{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    
+        .dflex{
+            width: 100%;
+        }
+    
+        #aboo{
+            width: 100%;
+        }
+
+        .table thead {
+            display: none;
+            }
+            .table tr{
+            display: block;
+            margin-bottom: 40px;
+            }
+            .table td {
+            display: block;
+            text-align: right;
+            }
+            .table td:before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            }
+        
+            nav a{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            #navv a{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                width: 33%;
+                align-items: center;
+                text-align: center;
+            }
+        
+    }
+
+    @media screen and (max-width:1200px) {
+
+        .table thead {
+            display: none;
+            }
+            .table tr{
+            display: block;
+            margin-bottom: 40px;
+            }
+            .table td {
+            display: block;
+            text-align: right;
+            }
+            .table td:before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            }
+
+    }

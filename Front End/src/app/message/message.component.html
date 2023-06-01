@@ -1,0 +1,215 @@
+<div id="main" class="container-fluid">
+  <header>
+    <div>
+      <div id="barre" class="container-fluid py-2">
+        <div class="d-flex flex-wrap justify-content-between justify-content-lg-start ">
+          
+          <a routerLink="/accueil" class="text-decoration-none align-items-center fs-1 fw-bold my-lg-0 text-white col-xl-6 col-2">
+            ToSucceed
+          </a>
+          <div class="pos-f-t col-xl-6 col-10 d-flex  justify-content-end">
+            
+          <nav id="nav_notresponsive" class="nav my-2 justify-content-between my-md-0 text-small align-items-center flex-row">
+            
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/accueil" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i class="fa fa-home fa-2x"></i>
+                    Accueil
+                </a>
+            </li>
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i class="fas fa-book fa-2x"></i>
+                    Cours
+                </a>
+            </li>
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/message" class="nav-link d-flex flex-column justify-content-center align-items-center">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    Messages 
+                </a>
+            </li>
+            <li *ngIf="isLoggedIn">
+                <a routerLink="/user/management" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i  class="fas fa-user-friends fa-2x"></i>
+                    Profil
+                </a>
+            </li>
+            
+            <li class="ml-4">
+                <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white">Login</a>
+                <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+
+            </li>
+
+           
+           
+          </nav>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i style="color: white;" class="fas fa-bars"></i>                
+          </button>
+          
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="d-flex justify-content-end">
+        <div id="navbartoggle" class="d-flex justify-content-center w-100 p-4">
+          <nav class="nav d-flex flex-row w-100 my-2 justify-content-start my-md-0 text-small align-items-center">
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/accueil" href="#" class="nav-link d-flex flex-column align-items-center">
+                    <i class="fa fa-home fa-2x"></i>
+                    Accueil
+                </a>
+            </li>
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                    <i class="fas fa-book fa-2x"></i>
+                    Cours
+                </a>
+            </li>
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/message" class="nav-link text-center d-flex flex-column align-items-center">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    Messages 
+                </a>
+            </li>
+            <li class="col-4" *ngIf="isLoggedIn">
+                <a routerLink="/user/management" href="#" class="nav-link d-flex flex-column align-items-center">
+                    <i  class="fas fa-user-friends fa-2x"></i>
+                     Profil
+                </a>
+            </li>
+            
+            <li class="col-8">
+                <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white ">Login</a>
+                <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+
+            </li>
+            
+           
+          </nav>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+  </header> 
+      
+      <div class="container mt-4">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card chat-app d-block">
+                    <div id="plist" class="people-list col-5">
+                        <div class="input-group d-flex flex-row">
+                            
+                            <form class="form-inline my-2 my-lg-0 justify-content-center">
+                              <span class="input-group-text"><i class="fa fa-search" style="height: 24px;"></i></span>
+
+                              <input name="searchTerm" #searchInput="ngModel" class="form-control mr-sm-2 w-75" ngModel
+                                (ngModelChange)="searchUsers(searchInput.value)" type="search" placeholder="Search users...">
+                            </form>
+                        </div>
+                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                        
+
+                            <li *ngFor="let perso of personnes; let i = index" [class.active]="selectedIndex==i" (click)="setIndex(i)" class="clearfix" (click)=selectUser(perso)>
+                              <img src="{{perso?.profileImageUrl}}" alt="{{perso?.username}}">
+                              <div class="about">
+                                  <div>{{perso?.username}}</div>
+                                  <div *ngIf="hasNewMessages(perso)">
+                                    <i class="far fa-bell"></i>                                  
+                                  </div>
+                                  <div class="status pt-1"> 
+                                    <span [hidden]="!perso.online" class="badge badge-success">En ligne</span>
+                                    <span [hidden]="perso.online" class="badge badge-secondary">Connecté le : {{perso?.lastLoginDateDisplay}}</span>
+                                  </div>                                            
+                              </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                    <div class="chat">
+                        <div class="chat-header clearfix">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img *ngIf="messages?.length>0" src="{{selectedUser?.profileImageUrl}}" alt="avatar">
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0">{{selectedUser?.username}}</h6>
+                                        <small>Vu le : {{selectedUser?.lastLoginDateDisplay}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 hidden-sm text-left text-lg-right mt-3 mt-lg-0">
+                                  <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#newChat" id="new-cours-close">Nouvelle discussion<i class="ml-2 fas fa-plus-square"></i></button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="scrollMe" class="chat-history">
+                            <ul class="m-b-0 d-flex flex-column">
+
+                                <li *ngFor="let message of filteredMessages" class="clearfix d-flex flex-column" [ngClass]="{'align-items-end': message.envoye, 'align-items-start': !message.envoye}">
+                                    <div class="message-data text-right">
+                                      <img [hidden]="message.envoye" src="{{selectedUser?.profileImageUrl}}" alt="{{selectedUser?.username}}" class="ml-3">
+
+                                        <span class="message-data-time">{{message?.dateEnvoi}}</span>
+                                    </div>
+                                    <div class="message my-message "> {{message?.contenu_msg}} </div>
+                                </li>                               
+                            </ul>
+                        </div>
+                        <div class="chat-message clearfix d-flex">
+                            <div class="input-group mb-0 flex-fill flex-row">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
+                                </div>
+                                <form #newMessageForm="ngForm" (ngSubmit)="onSendMessage(newMessageForm)" class="d-flex flex-row flex-fill">
+                                  <input type="text" name="contenu_msg" required ngModel class="form-control" placeholder="Enter text here...">
+                                <button [disabled]="newMessageForm.invalid" class="btn btn-sm btn-info" type="submit">Envoyer</button>   
+                              </form>      
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <div class="modal draggable fade bd-example-modal-lg w-100" id="newChat" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content" >
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Nouvelle discussion</h5>
+              <button type="button" id="nouveau-chat" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body h-100">
+              <form #chatForm="ngForm" (ngSubmit)="newChat(chatForm)">
+              
+                <ng-multiselect-dropdown
+                  placeholder="Avec qui voulez-vous discuter?"
+                  
+                  name="user"
+                  [data]="listusers"
+                  [(ngModel)]="selectedUser"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)"
+                  >
+                </ng-multiselect-dropdown>
+
+                <button type="submit"  class="btn btn-success my-4 float-end">Discuter</button>
+              </form>
+            
+            
+          </div>
+        </div>
+      </div>
+</div>

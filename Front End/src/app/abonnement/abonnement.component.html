@@ -1,0 +1,193 @@
+<div id="main" class="container-fluid pb-5">
+    <header>
+      <div>
+        <div id="barre" class="container-fluid py-2">
+          <div class="d-flex flex-wrap justify-content-between justify-content-lg-start ">
+            
+            <a routerLink="/accueil" class="text-decoration-none align-items-center fs-1 fw-bold my-lg-0 text-white col-xl-6 col-9">
+              ToSucceed
+            </a>
+            <div class="pos-f-t col-xl-6 col-3 d-flex  justify-content-end">
+              
+            <nav class="nav  my-2 justify-content-between my-md-0 text-small align-items-center flex-row">
+              
+              <li *ngIf="isLoggedIn">
+                  <a routerLink="/accueil" href="#" class="nav-link  d-flex flex-column align-items-center">
+                      <i class="fa fa-home fa-2x"></i>
+                      Home
+                  </a>
+              </li>
+              <li *ngIf="isLoggedIn">
+                  <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                      <i class="fas fa-book fa-2x"></i>
+                      Cours
+                  </a>
+              </li>
+              <li *ngIf="isLoggedIn">
+                  <a routerLink="/message" class="nav-link d-flex flex-column justify-content-center align-items-center">
+                      <i class="fas fa-envelope fa-2x"></i>
+                      Messages 
+                  </a>
+              </li>
+              <li *ngIf="isLoggedIn">
+                  <a routerLink="/user/management" href="#" class="nav-link  d-flex flex-column align-items-center">
+                      <i  class="fas fa-user-friends fa-2x"></i>
+                      Profil
+                  </a>
+              </li>
+              
+              <li class="ml-4">
+                  <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white">Login</a>
+                  <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+  
+              </li>
+  
+             
+             
+            </nav>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i style="color: white;" class="fas fa-bars"></i>                
+            </button>
+            
+            
+            </div>
+          </div>
+        </div>
+  
+        <div class="collapse" id="navbarToggleExternalContent">
+          <div class="d-flex justify-content-end">
+          <div id="navbartoggle" class="d-flex justify-content-center w-100 p-4">
+            <nav class="nav d-flex flex-row w-100 my-2 justify-content-start my-md-0 text-small align-items-center">
+              <li class="col-4" *ngIf="isLoggedIn">
+                  <a routerLink="/accueil" href="#" class="nav-link d-flex flex-column align-items-center">
+                      <i class="fa fa-home fa-2x"></i>
+                      Home
+                  </a>
+              </li>
+              <li class="col-4" *ngIf="isLoggedIn">
+                  <a routerLink="/cours" href="#" class="nav-link  d-flex flex-column align-items-center">
+                      <i class="fas fa-book fa-2x"></i>
+                      Cours
+                  </a>
+              </li>
+              <li class="col-4" *ngIf="isLoggedIn">
+                  <a routerLink="/message" class="nav-link text-center d-flex flex-column align-items-center">
+                      <i class="fas fa-envelope fa-2x"></i>
+                      Messages 
+                  </a>
+              </li>
+              <li class="col-4" *ngIf="isLoggedIn">
+                  <a routerLink="/user/management" href="#" class="nav-link d-flex flex-column align-items-center">
+                      <i  class="fas fa-user-friends fa-2x"></i>
+                       Profil
+                  </a>
+              </li>
+              
+              <li class="col-8">
+                  <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-lg btn-primary text-white ">Login</a>
+                  <a *ngIf="isLoggedIn"(click)="onLogOut()" routerLink="/accueil" class="btn btn-lg btn-danger">Logout</a>
+  
+              </li>
+              
+             
+            </nav>
+          </div>
+          </div>
+        </div>
+      </div>
+      
+    </header> 
+
+
+    <div class="container p-4">
+        
+        <div class="tab-content wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+            <div role="tabpanel" class="tab-pane fade show active" id="yearly">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4 mb-5 ">
+                        <div class="price-item text-center">
+                            <div class="price-top">
+                                <h4>Mensuel</h4>
+                                <h2 class="mb-0"><sup>€</sup>10</h2>
+                                <span class="text-capitalize">(10€ par mois)</span>
+                            </div>
+                            <div class="price-content">
+                                <ul class="border-bottom mb-30 mt-md-4 pb-3 text-left">
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">La meilleure solution pour découvrir nos services</span>
+                                    </li>
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">Tu peux résilier à tout moment !</span>
+                                    </li>
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">Tu auras accès à tous les cours sans exception, et aux mêmes privilèges que tous les autres abonnés</span>
+                                    </li>
+                                   
+                                </ul>
+                                <button href="#" [disabled]="isSuscribed" class="btn btn-custom" (click)="Suscribe(1)">Abonne-toi ! </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                        <div class="price-item text-center popular">
+                            <div class="price-top">
+                                <h4>Semestriel</h4>
+                                <h2 class="mb-0"><sup>€</sup>48</h2>
+                                <span class="text-capitalize">(8€ par mois)</span>
+                            </div>
+                            <div class="price-content">
+                                <ul class="border-bottom mb-30 mt-md-4 pb-3 text-left">
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">Tu as loupé ton premier semestre ? Alors lance-toi et donne tout pour réussir le second !</span>
+                                    </li>
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">Pour seulement 8€ par mois, sauve ton année. Bon deal, non?</span>
+                                    </li>
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">Succès scolaire garanti</span>
+                                    </li>
+                             
+                                </ul>
+                                <button href="#" [disabled]="isSuscribed" class="btn btn-custom btn-light" (click)="Suscribe(6)">Abonne-toi ! </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                        <div class="price-item text-center">
+                            <div class="price-top">
+                                <h4>Annuel</h4>
+                                <h2 class="mb-0"><sup>€</sup>60</h2>
+                                <span class="text-capitalize">(5€ par mois)</span>
+                            </div>
+                            <div class="price-content">
+                                <ul class="border-bottom mb-30 mt-md-4 pb-3 text-left">
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">La formule la plus économique !</span>
+                                    </li>
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">Te permet de rester à ton meilleur niveau en permanence, et de réussir à l'école</span>
+                                    </li>
+                                    <li>
+                                        <i class="zmdi zmdi-check mr-2"></i>
+                                        <span class="c-black">Ne loupe plus aucun cours, tu n'auras aucune excuse !</span>
+                                    </li>
+                                    
+                                </ul>
+                                <button href="#" [disabled]="isSuscribed" class="btn btn-custom" (click)="Suscribe(12)">Abonne-toi ! </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+    </div>
+
+</div>
